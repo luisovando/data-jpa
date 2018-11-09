@@ -6,4 +6,6 @@ import com.luisovando.springboot.app.models.entity.Client;
 
 public interface IClientDAO {
 	public List<Client> findAll();
+	
+	public void save(Client client);
 }
