@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h1 th:text="${title}"></h1>
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="first-name">First name</label> <input type="text"
+						class="form-control" id="first-name" placeholder="First name">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="last-name">Last Name</label> <input type="text"
+						class="form-control" id="last-name" placeholder="Last name">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="email">Email</label> <input type="email"
+						class="form-control" id="email" placeholder="Email">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="created-at">Date</label> <input type="text"
+						class="form-control" id="created-at" placeholder="Created At">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success">Create</button>
+		</form>
+	</div>
+</body>
+</html>
