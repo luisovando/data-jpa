@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.luisovando.springboot.app.models.entity.Client;
 
-@Repository
+@Repository("ClientJPARepository")
 public class ClientDAOImpl implements IClientDAO {
 
 	@PersistenceContext
