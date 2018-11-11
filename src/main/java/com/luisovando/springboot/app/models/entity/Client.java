@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="clients")
@@ -41,7 +40,6 @@ public class Client implements Serializable {
 	private String email;
 	
 	@Column(name="created_at")
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	

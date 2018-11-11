@@ -55,6 +55,7 @@ public class ClientController {
 	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public String store(@Valid Client client, BindingResult result, Map<String, Object> model, SessionStatus status) {
 		if (result.hasErrors()) {
+			model.put("title", "Formulario de cliente");
 			return "form";
 		}
 		clientRepository.save(client);
@@ -67,6 +68,6 @@ public class ClientController {
 		if (clientId > 0) {
 			clientRepository.delete(clientId);
 		}
-		return "redirect:list";
+		return "redirect:/list";
 	}
 }

@@ -6,6 +6,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
 <title th:text="${title}">Insert title here</title>
 </head>
 <body>
@@ -49,8 +53,14 @@
 					<td th:text="${client.lastName}"></td>
 					<td th:text="${client.email}"></td>
 					<td th:text="${client.createdAt}"></td>
-					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/form/} + ${client.id}" th:text="'Editar'"></a></td>
+					<td>
+						<a class="btn btn-primary btn-sm" th:href="@{/form/} + ${client.id}">
+							<i class="fas fa-user-edit"></i>
+						</a> 
+						<a class="btn btn-danger btn-sm" th:href="@{/delete/} + ${client.id}">
+							<i class="fas fa-user-minus"></i>
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
