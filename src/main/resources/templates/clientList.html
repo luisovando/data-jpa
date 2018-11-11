@@ -10,9 +10,27 @@
 </head>
 <body>
 	<div class="container">
+		<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<a class="navbar-brand" href="#">Spring Boot</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/list}">Client</a></li>
+				</ul>
+			</div>
+		</nav>
 		<h1 th:text="${title}"></h1>
-		<a class="btn btn-success btn-sm mb-2" th:href="@{/form}" role="button">New
-			Client</a>
+		<a class="btn btn-success btn-sm mb-2" th:href="@{/form}"
+			role="button">New Client</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -21,6 +39,7 @@
 					<th>Lastname</th>
 					<th>Email</th>
 					<th>Created At</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +49,8 @@
 					<td th:text="${client.lastName}"></td>
 					<td th:text="${client.email}"></td>
 					<td th:text="${client.createdAt}"></td>
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{/form/} + ${client.id}" th:text="'Editar'"></a></td>
 				</tr>
 			</tbody>
 		</table>
