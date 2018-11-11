@@ -20,8 +20,13 @@ public class ClientDAOImpl implements IClientDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
 	public List<Client> findAll() {
-		// TODO Auto-generated method stub
 		return em.createQuery("from Client").getResultList();
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Client findOne(Long clientId) {
+		return em.find(Client.class, clientId);
 	}
 
 	@Override
@@ -35,8 +40,9 @@ public class ClientDAOImpl implements IClientDAO {
 	}
 
 	@Override
-	public Client findOne(Long clientId) {
-		return em.find(Client.class, clientId);
+	@Transactional
+	public void delete(Long clientId) {
+		em.remove(this.findOne(clientId));
 	}
 
 }

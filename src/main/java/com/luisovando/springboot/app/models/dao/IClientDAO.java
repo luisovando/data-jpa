@@ -10,4 +10,6 @@ public interface IClientDAO {
 	public void save(Client client);
 	
 	public Client findOne(Long clientId);
+	
+	public void delete(Long clientId);
 }
