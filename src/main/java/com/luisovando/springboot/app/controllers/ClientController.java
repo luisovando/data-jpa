@@ -61,4 +61,12 @@ public class ClientController {
 		status.setComplete();
 		return "redirect:list";
 	}
+	
+	@RequestMapping(value="/delete/{id}")
+	public String destroy(@PathVariable(value="id") Long clientId, Map<String, Object> model) {
+		if (clientId > 0) {
+			clientRepository.delete(clientId);
+		}
+		return "redirect:list";
+	}
 }
