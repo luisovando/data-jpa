@@ -27,8 +27,16 @@ public class ClientDAOImpl implements IClientDAO {
 	@Override
 	@Transactional
 	public void save(Client client) {
-		// TODO Auto-generated method stub
-		em.persist(client);
+		if (client.getId() != null && client.getId() > 0) {
+			em.merge(client);
+		} else {
+			em.persist(client);
+		}
+	}
+
+	@Override
+	public Client findOne(Long clientId) {
+		return em.find(Client.class, clientId);
 	}
 
 }
