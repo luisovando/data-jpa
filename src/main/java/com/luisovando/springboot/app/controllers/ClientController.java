@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,21 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.luisovando.springboot.app.models.dao.IClientDAO;
 import com.luisovando.springboot.app.models.entity.Client;
+import com.luisovando.springboot.app.models.service.IClientService;
 
 @Controller
 @SessionAttributes("client")
 public class ClientController {
 	
 	@Autowired
-	@Qualifier("ClientJPARepository")
-	private IClientDAO clientRepository;
+	private IClientService clientService;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/list")
 	public String index(Model model) {
 		model.addAttribute("title", "Client's List");
-		model.addAttribute("clients", clientRepository.findAll());
+		model.addAttribute("clients", clientService.findAll());
 		return "clientList";
 	}
 	
@@ -46,7 +44,7 @@ public class ClientController {
 		if (clientId <= 0) {
 			return "redirect:list";
 		}
-		Client client = clientRepository.findOne(clientId);
+		Client client = clientService.findOne(clientId);
 		model.put("title", "Editar de cliente");
 		model.put("client", client);
 		return "form";
@@ -58,7 +56,7 @@ public class ClientController {
 			model.put("title", "Formulario de cliente");
 			return "form";
 		}
-		clientRepository.save(client);
+		clientService.save(client);
 		status.setComplete();
 		return "redirect:list";
 	}
@@ -66,7 +64,7 @@ public class ClientController {
 	@RequestMapping(value="/delete/{id}")
 	public String destroy(@PathVariable(value="id") Long clientId, Map<String, Object> model) {
 		if (clientId > 0) {
-			clientRepository.delete(clientId);
+			clientService.delete(clientId);
 		}
 		return "redirect:/list";
 	}
