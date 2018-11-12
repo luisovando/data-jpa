@@ -3,7 +3,6 @@ package com.luisovando.springboot.app.models.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,19 +13,18 @@ import com.luisovando.springboot.app.models.entity.Client;
 public class ClientServiceImpl implements IClientService {
 
 	@Autowired
-	@Qualifier("ClientJPARepository")
 	private IClientDAO clientRepository;
 	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Client> findAll() {
-		return clientRepository.findAll();
+		return (List<Client>) clientRepository.findAll();
 	}
 	
 	@Override
 	@Transactional(readOnly=true)
 	public Client findOne(Long clientId) {
-		return clientRepository.findOne(clientId);
+		return clientRepository.findById(clientId).orElse(null);
 	}
 
 	@Override
@@ -38,7 +36,7 @@ public class ClientServiceImpl implements IClientService {
 	@Override
 	@Transactional
 	public void delete(Long clientId) {
-		clientRepository.delete(clientId);
+		clientRepository.deleteById(clientId);
 	}
 	
 }
